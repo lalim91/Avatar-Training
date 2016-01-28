@@ -1,4 +1,4 @@
-body {
+/*body {
     background:transparent;
     background: url(background_image_avatar.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -6,43 +6,49 @@ body {
     -o-background-size: cover;
     background-size: cover;
     z-index: -1;
-}
-header#head div{
-    width: 95%;
+}*/
+/*Header Section*/
+#head {
+    position:relative;
+    width: 100%;
     height: 150px;
     background-color: blue;
-    opacity: .5;
-    position:relative;
-    left:2%;
 }
-div#mainSection {
-    width: 100%;
+
+/*Stats Section*/
+#statsSection {
+    position:relative;
+    float:left;
+    width: 15%;
     height: 600px;
-    background-color:white;
-    opacity: .5;
+    margin:5px;
+    background-color:green;
 }
-div#mainSection div{
-    position:relative;
+
+/*Game Section*/
+#cardSection {
+    display: inline-block;
+    width: 80%;
+    height: 600px;
+    margin: 5px;
+    background-color: gray;
+}
+.card{
+    position: relative;
     display:inline-block;
-    border:1px solid black;
-    background-color: #a2304e;
-    height:550px;
-    margin:10px;
+    width: 175px;
+    height:180px;
 }
-div#statsSection {
-    width:15%;
-
-}
-
-div#cardSection {
-    width:80%;
-}
-
-div.card {
+.card img{
+    position: absolute;
+    top: 0;
+    left:0;
     margin:2px;
-    width: 45px;
-    height:15px;
-    background-color: #fffabe;
+    width: 175px;
+    height:180px;
+}
+.back img:hover {
+    opacity: .1;
 }
 
 
