@@ -14,6 +14,15 @@
     height: 150px;
     background-color: blue;
 }
+#head img {
+    width: 140px;
+    height: 150px;
+}
+#head h1 {
+    position: relative;
+    display: inline-block;
+    left:450px;
+}
 
 /*Stats Section*/
 #statsSection {
@@ -38,6 +47,7 @@
     display:inline-block;
     width: 175px;
     height:180px;
+    border-radius:20%;
 }
 .card img{
     position: absolute;
@@ -46,6 +56,8 @@
     margin:2px;
     width: 175px;
     height:180px;
+    border-radius:20%;
+
 }
 .back img:hover {
     opacity: .1;
