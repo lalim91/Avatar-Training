@@ -1,0 +1,83 @@
+/*body {
+    background:transparent;
+    background: url(background_image_avatar.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+}*/
+/*Header Section*/
+#head {
+    position:relative;
+    width: 1200px;
+    height: 125px;
+}
+#head img {
+    width: 230px;
+    height: 125px;
+}
+#head div {
+    position: relative;
+    display: inline-block;
+    width: 1100px;
+    height: 125px;
+    top: -125px;
+    left: 248px;
+    background-color: lightgray;
+
+
+}
+#head h1 {
+    position: relative;
+    display: inline-block;
+    left:450px;
+}
+#head ul {
+    list-style-type: none;
+}
+#head li {
+    display: inline-block;
+}
+
+/*Stats Section*/
+#statsSection {
+    position:relative;
+    float:left;
+    width: 15%;
+    height: 600px;
+    margin:5px;
+    background-color:darkgrey;
+}
+
+/*Game Section*/
+#cardSection {
+    display: inline-block;
+    width: 80%;
+    height: 600px;
+    margin: 5px;
+    background-color: gray;
+}
+.card{
+    position: relative;
+    display:inline-block;
+    width: 175px;
+    height:180px;
+    border-radius:20%;
+}
+.card img{
+    position: absolute;
+    top: 0;
+    left:0;
+    margin:2px;
+    width: 175px;
+    height:180px;
+    border-radius:20%;
+
+}
+
+/*About page*/
+.about {
+    width: 500px;
+    height: 600px;
+}
