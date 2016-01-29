@@ -1,4 +1,6 @@
-/*body {
+/*Waiting to put in a background image to see spacing
+
+body {
     background:transparent;
     background: url(background_image_avatar.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -75,9 +77,9 @@
     border-radius:20%;
 
 }
-.back img:hover {
-    opacity: .1;
-}
+/*.back:hover {*/
+    /*opacity: .1;*/
+/*}*/
 
 /*About page*/
 .about {
