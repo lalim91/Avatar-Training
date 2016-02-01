@@ -2,21 +2,20 @@ var first_card_clicked = null;
 var second_card_clicked = null;
 var back_first = null;
 var back_second = null;
-var total_possible_matches = 2;
-var match_counter = 0;
+var total_possible_matches = 9;
 var attempts = 0;
 var accuracy = 0;
+var matches = 0;
 var games_played = 0;
 
 $(document).ready(function(){
 
-
-
-
-
-
-
-
+    $('.reset').click(function(){
+        games_played += 1;
+        reset_stats();
+        display_stats();
+        $('.back').show();
+    });
 
     $('.back').addClass('noMatch');//To flip back with later
     $('.back').click(function(){
@@ -39,6 +38,10 @@ $(document).ready(function(){
                 back_first = null;//refresh the variables for the next match
                 back_second = null;//refresh the variables for the next match
                     console.log(back_first,back_second);
+
+            attempts += 1;
+            calc_accuracy(matches,attempts);
+            display_stats();
         }
     })
 });
@@ -49,23 +52,20 @@ $(document).ready(function(){
             console.log('Hip hip hooray! A match!');
             $(back_first).removeClass('noMatch');//keep the back card hidden
             $(back_second).removeClass('noMatch');//keep the back card hidden
-            match_counter += 1;
-            console.log("match counter: " + match_counter);
-            winner(match_counter,total_possible_matches);
-
-
+            matches += 1;
+            console.log("match #:" + matches);
+            winner(matches,total_possible_matches);
         }else {
             console.log('Whoops, try again!');
             setTimeout(function(){
                 $('.noMatch').show();//flip over again after 2 secs
             },2000);
-
-
         }
+
     }
 
-        function winner(match_counter,total_possible_matches){//this function is called in compare function above
-            if(match_counter == total_possible_matches){
+        function winner(matches,total_possible_matches){//this function is called in compare function above
+            if(matches == total_possible_matches){
                 console.log("Congrats! You are a winner!");
             }else {
             }
@@ -73,17 +73,20 @@ $(document).ready(function(){
 
 function display_stats(){
     $('.games-played .value').text(games_played);
-    $('.accuracy .value').text(accuracy);
+    $('.accuracy .value').text(accuracy + "%");
+    $('.attempts .value').text(attempts);
 }
 function reset_stats(){
-    games_played += 1;
     accuracy = 0;
     matches = 0;
     attempts = 0;
     display_stats();
 }
 
+    function calc_accuracy(matches,attempts){//call after second card is picked
+        accuracy = Math.round(matches/attempts * 100);
 
+}
 
 
 
