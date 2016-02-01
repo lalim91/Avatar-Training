@@ -4,9 +4,20 @@ var back_first = null;
 var back_second = null;
 var total_possible_matches = 2;
 var match_counter = 0;
-var timer = 0;
+var attempts = 0;
+var accuracy = 0;
+var games_played = 0;
 
 $(document).ready(function(){
+
+
+
+
+
+
+
+
+
     $('.back').addClass('noMatch');//To flip back with later
     $('.back').click(function(){
         $(this).hide();
@@ -33,7 +44,7 @@ $(document).ready(function(){
 });
 
 
-    function compare(first_card_clicked,second_card_clicked){//this function is called above
+    function compare(first_card_clicked,second_card_clicked){//this function called in click function above
         if(first_card_clicked == second_card_clicked){
             console.log('Hip hip hooray! A match!');
             $(back_first).removeClass('noMatch');//keep the back card hidden
@@ -41,6 +52,7 @@ $(document).ready(function(){
             match_counter += 1;
             console.log("match counter: " + match_counter);
             winner(match_counter,total_possible_matches);
+
 
         }else {
             console.log('Whoops, try again!');
@@ -52,14 +64,24 @@ $(document).ready(function(){
         }
     }
 
-        function winner(match_counter,total_possible_matches){//this function is called above
+        function winner(match_counter,total_possible_matches){//this function is called in compare function above
             if(match_counter == total_possible_matches){
                 console.log("Congrats! You are a winner!");
             }else {
-                return;
             }
         }
 
+function display_stats(){
+    $('.games-played .value').text(games_played);
+    $('.accuracy .value').text(accuracy);
+}
+function reset_stats(){
+    games_played += 1;
+    accuracy = 0;
+    matches = 0;
+    attempts = 0;
+    display_stats();
+}
 
 
 
