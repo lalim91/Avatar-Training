@@ -1,12 +1,13 @@
-body {
-    background:transparent;
+body{
     background: url('background-image-avatar.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: 1440px 755px;
+    background-size: cover;
     z-index: -1;
 }
+
+
 /*Header Section*/
 #head {
     position:relative;
@@ -55,19 +56,18 @@ body {
 
 /*Game Section*/
 #game-area {
-    position: relative;
+    position: absolute;
     display: inline-block;
-    width: 1000px;
-    height: 600px;
+    width: 700px;
+    height: 350px;
     margin: 5px;
-    left:70px;
-    /*background-color: gray;*/
+    left: 170px;
 }
 .card{
     position: relative;
     display:inline-block;
-    width: 120px;
-    height:130px;
+    width: 100px;
+    height:110px;
     border-radius:20%;
 }
 .card img{
@@ -75,9 +75,10 @@ body {
     top: 0;
     left:0;
     margin:2px;
-    width: 120px;
-    height:130px;
+    width: 100px;
+    height:110px;
     border-radius:20%;
+    border: 2px solid goldenrod;
 
 }
 

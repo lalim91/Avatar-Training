@@ -7,6 +7,7 @@ var attempts = 0;
 var accuracy = 0;
 var matches = 0;
 var games_played = 0;
+var locked = false;
 
 $(document).ready(function(){
 
@@ -15,20 +16,26 @@ $(document).ready(function(){
         reset_stats();
         display_stats();
         $('.back').show();
+        random();
     });
 
+    random();
     $('.back').addClass('noMatch');//To flip back with later
     $('.back').click(function(){
+        if (locked){
+            return;
+        }
         $(this).hide();
 
-        if (first_card_clicked == null){
-            first_card_clicked = $(this).prev().first().attr('src');//.prev= div.card;.first=img.front
-            console.log('1st card');
-            back_first = $(this);//stores the back card to flip later
-        }else{
-            second_card_clicked = $(this).prev().first().attr('src');//.prev= div.card;.first=img.front
-            console.log('2nd card');
-            back_second = $(this);//stores the back card to flip later
+
+            if (first_card_clicked == null){
+                first_card_clicked = $(this).prev().first().attr('src');//.prev= div.card;.first=img.front
+                console.log('1st card');
+                back_first = $(this);//stores the back card to flip later
+            }else{
+                second_card_clicked = $(this).prev().first().attr('src');//.prev= div.card;.first=img.front
+                console.log('2nd card');
+                back_second = $(this);//stores the back card to flip later
 
                 compare(first_card_clicked,second_card_clicked);
                 first_card_clicked = null;//refresh the variables for the next match
@@ -48,6 +55,7 @@ $(document).ready(function(){
 
 
     function compare(first_card_clicked,second_card_clicked){//this function called in click function above
+        locked = true;
         if(first_card_clicked == second_card_clicked){
             console.log('Hip hip hooray! A match!');
             $(back_first).removeClass('noMatch');//keep the back card hidden
@@ -55,11 +63,14 @@ $(document).ready(function(){
             matches += 1;
             console.log("match #:" + matches);
             winner(matches,total_possible_matches);
+            locked = false;
         }else {
             console.log('Whoops, try again!');
             setTimeout(function(){
                 $('.noMatch').show();//flip over again after 2 secs
+                locked = false;
             },2000);
+
         }
 
     }
@@ -88,6 +99,14 @@ function reset_stats(){
 
 }
 
+
+function random() {
+    var parent = $("#game-area");
+    var divs = parent.children();
+    while (divs.length) {
+        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    }
+}
 
 
 
