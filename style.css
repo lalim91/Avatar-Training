@@ -1,9 +1,12 @@
 body{
-    background: url('background-image-avatar.jpg') no-repeat center center fixed;
+    background: url('xback.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-position: 50% 50%;
+    overflow: hidden;
+    position: relative;
     z-index: -1;
 }
 
@@ -45,7 +48,7 @@ body{
 #statsSection {
     position:relative;
     float:left;
-    width: 15%;
+    width: 27%;
     height: 600px;
     margin:5px;
     background-image: url('Aang_Official.png');
@@ -56,12 +59,11 @@ body{
 
 /*Game Section*/
 #game-area {
-    position: absolute;
+    position:relative;
     display: inline-block;
-    width: 700px;
-    height: 350px;
+    width: 43vw;
+    height: 45vh;
     margin: 5px;
-    left: 170px;
 }
 .card{
     position: relative;
