@@ -1,10 +1,10 @@
 body {
     background:transparent;
-    background: url('southern-air-temple.jpg') no-repeat center center fixed;
+    background: url('background-image-avatar.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: 1440px 755px;
     z-index: -1;
 }
 /*Header Section*/
@@ -47,24 +47,27 @@ body {
     width: 15%;
     height: 600px;
     margin:5px;
-    background-image: url('Aang_Official.png'); no-repeat center center fixed;
+    background-image: url('Aang_Official.png');
+    background-repeat: no-repeat;
     background-position: center;
     z-index: -1;
 }
 
 /*Game Section*/
-#cardSection {
+#game-area {
+    position: relative;
     display: inline-block;
-    width: 80%;
+    width: 1000px;
     height: 600px;
     margin: 5px;
+    left:70px;
     /*background-color: gray;*/
 }
 .card{
     position: relative;
     display:inline-block;
-    width: 175px;
-    height:180px;
+    width: 120px;
+    height:130px;
     border-radius:20%;
 }
 .card img{
@@ -72,8 +75,8 @@ body {
     top: 0;
     left:0;
     margin:2px;
-    width: 175px;
-    height:180px;
+    width: 120px;
+    height:130px;
     border-radius:20%;
 
 }
