@@ -10,8 +10,11 @@ var games_played = 0;
 var locked = false;
 
 $(document).ready(function(){
+    console.log('Ready');
+    console.log($('#reset'));
 
-    $('.reset').click(function(){
+    $('body').on('click', '#reset', function(){
+        console.log("reset clicked");
         games_played += 1;
         reset_stats();
         display_stats();
