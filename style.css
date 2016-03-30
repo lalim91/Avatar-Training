@@ -1,5 +1,5 @@
 body {
-    background-image: url("back.png");
+    background-image: url("images/back.png");
     background-repeat: no-repeat;
     *background-position: center;
     background-size: cover;
@@ -38,7 +38,7 @@ body {
     width: 27%;
     height: 600px;
     margin:5px;
-    background-image: url('fly.png');
+    background-image: url('images/fly.png');
     background-repeat: no-repeat;
     background-position: center;
     font-size:3vh;
