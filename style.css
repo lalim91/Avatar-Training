@@ -1,0 +1,25 @@
+/********************************
+Main Page
+*********************************/
+#main{
+    height:100vh;
+    width:100vw;
+}
+#logo{
+    height:20vh;
+    border:1px solid black;
+}
+/********************************
+Stat Board
+*********************************/
+#statsDiv{
+    height:70vh;
+    border:1px solid black;
+}
+/********************************
+Game Board
+*********************************/
+#gameDiv{
+    height:70vh;
+    border:1px solid black;
+}
