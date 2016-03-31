@@ -23,3 +23,8 @@ Game Board
     height:70vh;
     border:1px solid black;
 }
+.card{
+    height:20vh;
+    width:10vw;
+    border:1px solid black;
+}
