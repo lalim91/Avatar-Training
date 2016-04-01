@@ -1,31 +1,33 @@
 /********************************
 Main Page
 *********************************/
-#main{
+body{
     height:100vh;
     width:100vw;
 }
 #logo{
-    height:20vh;
+    height:16vh;
     border:1px solid black;
 }
 /********************************
 Stat Board
 *********************************/
 #statsDiv{
-    height:70vh;
+    height:83vh;
     border:1px solid black;
 }
 /********************************
 Game Board
 *********************************/
 #gameDiv{
-    height:70vh;
+    height:83vh;
     border:1px solid black;
 }
 .container {
-    width: 20vw;
-    height: 40vh;
+    display: inline-block;
+    margin-right: 1vw;
+    width: 9vw;
+    height: 27vh;
     position: relative;
     border: 1px solid #ccc;
     -webkit-perspective: 800px;

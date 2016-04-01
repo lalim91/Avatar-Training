@@ -5,10 +5,22 @@ var gameController = function (element){
     var self = this;
     self.element = $(element);
     var cards = [];
-    this.createCards = function(){
-        var newCard = new cardGenerator();
-        cards.push(newCard);
+    this.createCards = function(height,width){
+        for (var i = 0; i < height; i++) {
+            var tr = $('<tr>');
+            for(var j = 0;j <width;j++){
+                var newCard = new cardGenerator();
+                var cardElement = newCard.renderCard();
+                cards.push(newCard);
+                tr.append(cardElement);
+            }
+            self.element.append(tr);
+        }
     };
+    this.createFaces = function(){
+
+    };
+
     var cardGenerator = function(){
         var cgSelf = this;
         cgSelf.cardContainer = null;
@@ -19,7 +31,7 @@ var gameController = function (element){
             var divCard = $('<div>');
             cgSelf.cardElement = divCard.addClass('card');
             cgSelf.cardContainer = divCon.addClass('container');
-            cgSelf.cardContainer.append(cg.cardElement);
+            cgSelf.cardContainer.append(cgSelf.cardElement);
             return cgSelf.cardContainer;
         }
     };
@@ -52,5 +64,11 @@ var gameController = function (element){
 };
 
 
+var game;
+$(document).ready(function(){
+    game = new gameController('#gameDiv');
+    game.createCards(3,6);
+
+});
 
 
