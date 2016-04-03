@@ -16,6 +16,7 @@ var gameController = function (gameElement,statElement){
     var locked = false;
     var matches = 0;
     var attempts = 0;
+    var accuracy = null;
     this.createCards = function(height,width){
         for (var i = 0; i < height; i++) {
             var tr = $('<tr>');
@@ -28,6 +29,7 @@ var gameController = function (gameElement,statElement){
             self.gameElement.append(tr);
         }
     };
+
     this.createFront = function(frontData){
         var newFront = null;
         var frontElement = null;
@@ -88,7 +90,7 @@ var gameController = function (gameElement,statElement){
               setTimeout(function(){
                   locked = false;
                   $('.noMatch').removeClass('flipped');
-                  $('.noMatch').addClass('clicked');
+                  this.clicked = true;
               },2000);
               game.clearCards();
           }
@@ -112,24 +114,50 @@ var gameController = function (gameElement,statElement){
     };
 
     this.calculateAccuracy = function (){
-        var accuracy = Math.round(matches/attempts * 100);
+        accuracy = Math.round(matches/attempts * 100);
         console.log(accuracy);
+        var acc = accuracy + "%";
         if (attempts > 0){
-            return accuracy;
+            return acc;
         }
-
     };
 
     this.displayStats =function (){
         $('.matches').text(matches);
         $('.attempts').text(attempts);
-        $('.accuracy').text(self.calculateAccuracy());
+        $('.accuracy').text(this.calculateAccuracy());
+    };
+
+    this.resetStats = function (){
+        matches = 0;
+        attempts = 0;
+        accuracy = null;
+        self.displayStats();
+    };
+
+    this.resetBoard = function(height,width){
+        for (var i = 0; i < height; i++) {
+            var tr = $('<tr>');
+            for(var j = 0;j <width;j++){
+                tr.append(cards[i]);
+            }
+            self.gameElement.append(tr);
+        }
+    };
+
+    this.resetGame = function (){
+        $('.btn').click(function(){
+            self.gameElement.empty();
+            self.resetBoard(3,6);
+            self.resetStats();
+        })
     };
 
     var cardGenerator = function(){
         var cgSelf = this;
         cgSelf.cardContainer = null;
         cgSelf.cardElement = null;
+        cgSelf.clicked = true;
 
 
         this.renderCard = function(){
@@ -139,7 +167,6 @@ var gameController = function (gameElement,statElement){
             cgSelf.cardContainer = divCon.addClass('container');
             cgSelf.cardContainer.append(cgSelf.cardElement);
             cgSelf.cardElement.on('click', function(){
-                cgSelf.cardElement.addClass('clicked');
                 cgSelf.enableClick();
             });
 
@@ -159,28 +186,30 @@ var gameController = function (gameElement,statElement){
             }
         };
 
-        this.disableClick = function (){
-            $('.clicked').removeClass('clicked');
-        };
+        //this.disableClick = function (){
+        //    $('.clicked').removeClass('clicked');
+        //};
 
         this.enableClick = function (){
-            if (cgSelf.cardElement.hasClass('clicked')){
+            if (cgSelf.clicked === false) {
+                return;
+            }else{
                 cgSelf.cardClickHandler();
             }
+
         };
 
         this.addFlipCard = function (){
             cgSelf.cardElement.addClass('flipped '+'noMatch');
-            cgSelf.disableClick();
-
         };
 
         this.assignCards = function(){
             if (firstCardClicked == null){
+                cgSelf.clicked = false;
                 firstCardClicked = cgSelf;
                 console.log('First Card Clicked ', firstCardClicked);
             }else {
-
+                cgSelf.clicked = false;
                 secondCardClicked = cgSelf;
                 console.log('Second Card Clicked ', secondCardClicked);
                 attempts++;
@@ -291,5 +320,6 @@ $(document).ready(function(){
     game.createStats('Accuracy','accuracy');
     game.makeStat();
     game.displayStats();
+    game.resetGame();
 
 });
