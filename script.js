@@ -14,6 +14,8 @@ var gameController = function (gameElement,statElement){
     var firstCardClicked = null;
     var secondCardClicked = null;
     var locked = false;
+    var matches = 0;
+    var attempts = 0;
     this.createCards = function(height,width){
         for (var i = 0; i < height; i++) {
             var tr = $('<tr>');
@@ -71,23 +73,27 @@ var gameController = function (gameElement,statElement){
     };
 
     this.compareCards = function (firstCard,secondCard){
+        //this.card = card;
       if (secondCard != null){
           locked = true;
           if (firstCard.cardElement[0].firstChild.currentSrc == secondCard.cardElement[0].firstChild.currentSrc){
               console.log ('Match!');
-              $('.noMatch').removeClass('noMatch');
-              sgSelf.matches();
               locked = false;
+              $('.noMatch').removeClass('noMatch');
+              matches++;
+              console.log('matches:', matches);
               game.clearCards();
           }else {
               console.log ('Try again!');
               setTimeout(function(){
-                  $('.noMatch').removeClass('flipped');
                   locked = false;
+                  $('.noMatch').removeClass('flipped');
+                  $('.noMatch').addClass('clicked');
               },2000);
-
-             game.clearCards();
+              game.clearCards();
           }
+          self.calculateAccuracy();
+          self.displayStats();
       }
     };
 
@@ -100,9 +106,24 @@ var gameController = function (gameElement,statElement){
 
     this.makeStat = function () {
         for (var i in stats) {
-            var element = stats[i].renderStats();
-            self.statElement.append(element);
+            var x = stats[i].renderStats();
+            self.statElement.append(x);
         }
+    };
+
+    this.calculateAccuracy = function (){
+        var accuracy = Math.round(matches/attempts * 100);
+        console.log(accuracy);
+        if (attempts > 0){
+            return accuracy;
+        }
+
+    };
+
+    this.displayStats =function (){
+        $('.matches').text(matches);
+        $('.attempts').text(attempts);
+        $('.accuracy').text(self.calculateAccuracy());
     };
 
     var cardGenerator = function(){
@@ -117,27 +138,40 @@ var gameController = function (gameElement,statElement){
             cgSelf.cardElement = divCard.addClass('card');
             cgSelf.cardContainer = divCon.addClass('container');
             cgSelf.cardContainer.append(cgSelf.cardElement);
-
-            cgSelf.cardElement.click(function(){
-                if (locked == false){
-                    cgSelf.addFlipCard();
-                    cgSelf.assignCards();
-                    game.compareCards(firstCardClicked,secondCardClicked);
-                }
-
+            cgSelf.cardElement.on('click', function(){
+                cgSelf.cardElement.addClass('clicked');
+                cgSelf.enableClick();
             });
+
             return cgSelf.cardContainer;
         };
-
 
 
         //this.returnCard = function () {
         //    return cgSelf.cardElement;
         //};
 
+        this.cardClickHandler = function (){
+            if (locked == false){
+                cgSelf.addFlipCard();
+                cgSelf.assignCards();
+                game.compareCards(firstCardClicked,secondCardClicked);
+            }
+        };
+
+        this.disableClick = function (){
+            $('.clicked').removeClass('clicked');
+        };
+
+        this.enableClick = function (){
+            if (cgSelf.cardElement.hasClass('clicked')){
+                cgSelf.cardClickHandler();
+            }
+        };
 
         this.addFlipCard = function (){
             cgSelf.cardElement.addClass('flipped '+'noMatch');
+            cgSelf.disableClick();
 
         };
 
@@ -146,8 +180,12 @@ var gameController = function (gameElement,statElement){
                 firstCardClicked = cgSelf;
                 console.log('First Card Clicked ', firstCardClicked);
             }else {
+
                 secondCardClicked = cgSelf;
                 console.log('Second Card Clicked ', secondCardClicked);
+                attempts++;
+                console.log('attempts:', attempts);
+
             }
         };
     };
@@ -181,18 +219,19 @@ var gameController = function (gameElement,statElement){
         var statResult = $('<h3>');
         sgSelf.text = text;
         sgSelf.classAttr = classAttr;
-        sgSelf.match = 0;
-        sgSelf.attempts = 0;
+        sgSelf.statElement = null;
+        sgSelf.titleElement = null;
+        sgSelf.resultElement = null;
 
         this.renderStats = function(){
             sgSelf.statElement = divStats.addClass('stats');
-            sgSelf.statElement.append(statTitle).text(sgSelf.text);
-            sgSelf.statElement.append(statResult).addClass(sgSelf.classAttr);
+            sgSelf.titleElement = statTitle.text(sgSelf.text);
+            sgSelf.resultElement = statResult.addClass(sgSelf.classAttr);
+            sgSelf.statElement.append(sgSelf.titleElement);
+            sgSelf.statElement.append(sgSelf.resultElement);
+            return sgSelf.statElement;
         };
 
-        this.matches = function (){
-            sgSelf.match++;
-        };
         this.returnMatches = function(){
             return sgSelf.match;
         }
@@ -242,7 +281,7 @@ var frontData = [
 
 var game;
 $(document).ready(function(){
-    game = new gameController('#gameDiv','statsDiv');
+    game = new gameController('#gameDiv','#statsDiv');
     game.createCards(3,6);
     game.createFront(frontData);
     game.shuffleDeck();
@@ -251,5 +290,6 @@ $(document).ready(function(){
     game.createStats('Attempts','attempts');
     game.createStats('Accuracy','accuracy');
     game.makeStat();
+    game.displayStats();
 
 });
