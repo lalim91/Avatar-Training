@@ -4,29 +4,45 @@ Main Page
 body{
     height:100vh;
     width:100vw;
+    background: url("image/background.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
 }
 #logo{
     height:16vh;
-    border:1px solid black;
+    background: url('image/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    top:5vh;
 }
+.win{
+    text-align:center;
+}
+.winGif{
+    left: 2vw;
+    position: relative;
+}
+
 /********************************
 Stat Board
 *********************************/
 #statsDiv{
-    height:83vh;
-    border:1px solid black;
+    height:56vh;
+    /*border:1px solid black;*/
+    top:9vh;
 }
 .stats{
     text-align: center;
     width: 100%;
     height: 20%;
+    color:lightgrey;
 }
 /********************************
 Game Board
 *********************************/
 #gameDiv{
     height:83vh;
-    border:1px solid black;
+    /*border:1px solid black;*/
 }
 .container {
     display: inline-block;
@@ -34,7 +50,7 @@ Game Board
     width: 9vw;
     height: 27vh;
     position: relative;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
     -o-perspective: 800px;
@@ -66,7 +82,7 @@ Game Board
     backface-visibility: hidden;
 }
 .card .back{
-    background-color: powderblue;
+    /*background-color: powderblue;*/
 }
 
 .card .front {
@@ -87,5 +103,17 @@ Game Board
     -o-transform: rotateY( 180deg );
     transform: rotateY( 180deg );
 }
+.wind{
+    -webkit-animation: anim 10s infinite linear;
+    animation: anim .5s infinite linear;
+}
+@-webkit-keyframes anim {
+    from {-webkit-transform: rotateY(0deg);}
+    to {-webkit-transform: rotateY(360deg);}
+}
+
+@keyframes anim {
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(360deg);}
+}
 .noMatch{}
-.clicked{}

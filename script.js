@@ -1,10 +1,11 @@
 /**
  * Created by Lalim on 3/30/16.
  */
-var gameController = function (gameElement,statElement){
+var gameController = function (gameElement,statElement,modalElement){
     var self = this;
     self.gameElement = $(gameElement);
     self.statElement = $(statElement);
+    self.modalElement = $(modalElement);
     var cards = [];
     var frontObj = [];
     var frontImg = [];
@@ -29,6 +30,7 @@ var gameController = function (gameElement,statElement){
         self.createStats('Attempts','attempts');
         self.createStats('Accuracy','accuracy');
         self.makeStat();
+        self.hideModel();
         self.displayStats();
     };
 
@@ -88,25 +90,29 @@ var gameController = function (gameElement,statElement){
         firstCardClicked = null;
         secondCardClicked = null;
     };
+    this.tryAgain = function (firstCard,secondCard){
+        firstCard.flipBack();
+        secondCard.flipBack();
+        firstCard.clicked = true;
+        secondCard.clicked = true;
+    };
 
     this.compareCards = function (firstCard,secondCard){
         //this.card = card;
       if (secondCard != null){
           locked = true;
           if (firstCard.cardElement[0].firstChild.currentSrc == secondCard.cardElement[0].firstChild.currentSrc){
-              console.log ('Match!');
-              locked = false;
-              $('.noMatch').removeClass('noMatch');
+              //$('.noMatch').removeClass('noMatch');
               matches++;
               console.log('matches:', matches);
-              game.clearCards();
+              firstCard.matchAnimate();
+              secondCard.matchAnimate();
+              self.winCondition();
+              self.clearCards();
           }else {
               console.log ('Try again!');
-              firstCard.flipBack();
-              secondCard.flipBack();
-              firstCard.clicked = true;
-              secondCard.clicked = true;
-              game.clearCards();
+              self.tryAgain(firstCardClicked,secondCardClicked);
+              self.clearCards();
           }
           self.calculateAccuracy();
           self.displayStats();
@@ -168,6 +174,19 @@ var gameController = function (gameElement,statElement){
             self.resetStats();
         })
     };
+    this.hideModel = function (){
+        self.modalElement.modal({
+            show: false
+        })
+    };
+
+    this.winCondition = function (){
+        if(matches == cards.length/2){
+            self.modalElement.modal({
+                show: true
+            })
+        }
+    };
 
     var cardGenerator = function(){
         var cgSelf = this;
@@ -213,16 +232,15 @@ var gameController = function (gameElement,statElement){
             }else{
                 cgSelf.cardClickHandler();
             }
-
         };
 
         this.addFlipCard = function (){
-            cgSelf.cardElement.addClass('flipped '+'noMatch');
+            cgSelf.cardElement.addClass('flipped');
         };
         this.flipBack= function(){
             setTimeout(function(){
                 locked = false;
-                $('.noMatch').removeClass('flipped');
+                cgSelf.cardElement.removeClass('flipped');
             },2000);
         };
 
@@ -240,10 +258,14 @@ var gameController = function (gameElement,statElement){
 
             }
         };
-        //this.deleteCard = function (){
-        //    cgSelf.cardContainer.remove();
-        //
-        //}
+        this.matchAnimate = function (){
+            cgSelf.cardElement.addClass('wind');
+            setTimeout(function(){
+                cgSelf.cardElement.fadeOut();
+                locked = false;
+            },2000);
+        }
+
     };
 
 
@@ -325,7 +347,7 @@ var frontData = [
         frontCount:2
     },
     {
-        frontSrc:'image/aang.png',
+        frontSrc:'image/aangflying.png',
         frontCount:2
     },
     {
@@ -337,7 +359,7 @@ var frontData = [
 
 var game;
 $(document).ready(function(){
-    game = new gameController('#gameDiv','#statsDiv');
+    game = new gameController('#gameDiv','#statsDiv','#modalElement');
     game.cardCreationProcess();
     game.statCreationProcess();
     game.resetGame();
