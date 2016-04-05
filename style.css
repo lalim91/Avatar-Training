@@ -1,0 +1,119 @@
+/********************************
+Main Page
+*********************************/
+body{
+    height:100vh;
+    width:100vw;
+    background: url("image/background.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+#logo{
+    height:16vh;
+    background: url('image/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    top:5vh;
+}
+.win{
+    text-align:center;
+}
+.winGif{
+    left: 2vw;
+    position: relative;
+}
+
+/********************************
+Stat Board
+*********************************/
+#statsDiv{
+    height:56vh;
+    /*border:1px solid black;*/
+    top:9vh;
+}
+.stats{
+    text-align: center;
+    width: 100%;
+    height: 20%;
+    color:lightgrey;
+}
+/********************************
+Game Board
+*********************************/
+#gameDiv{
+    height:83vh;
+    /*border:1px solid black;*/
+}
+.container {
+    display: inline-block;
+    margin-right: 1vw;
+    width: 9vw;
+    height: 27vh;
+    position: relative;
+    /*border: 1px solid #ccc;*/
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+}
+.card {
+    width: 100%;
+    height: 100%;
+    left:-1%;
+    position: absolute;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+}
+.cardImg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.card .back{
+    /*background-color: powderblue;*/
+}
+
+.card .front {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+.card.flipped {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+.card.flipBack {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+.wind{
+    -webkit-animation: anim 10s infinite linear;
+    animation: anim .5s infinite linear;
+}
+@-webkit-keyframes anim {
+    from {-webkit-transform: rotateY(0deg);}
+    to {-webkit-transform: rotateY(360deg);}
+}
+
+@keyframes anim {
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(360deg);}
+}
+.noMatch{}
