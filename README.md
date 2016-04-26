@@ -6,8 +6,8 @@
 
 ## Features Implemented
 
--- Added animation
--- Written in OOP
+- Added animation <br>
+- Written in OOP
 
 ## Future Feature Sets
 
