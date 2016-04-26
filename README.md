@@ -11,7 +11,7 @@
 
 ## Future Feature Sets
 
--- Add a level for water, earth, and fire elements
+- Add a level for water, earth, and fire elements
 
 ![alt text](https://cloud.githubusercontent.com/assets/16481856/14808161/0cf0186a-0b38-11e6-975d-648c11d98c53.png "Avatar Training Image")
 
