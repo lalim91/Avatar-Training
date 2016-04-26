@@ -104,7 +104,7 @@ Game Board
     transform: rotateY( 180deg );
 }
 .wind{
-    -webkit-animation: anim 10s infinite linear;
+    -webkit-animation: anim .5s infinite linear;
     animation: anim .5s infinite linear;
 }
 @-webkit-keyframes anim {
