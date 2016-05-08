@@ -1,119 +1,332 @@
 /********************************
 Main Page
 *********************************/
-body{
-    height:100vh;
-    width:100vw;
-    background: url("image/background.jpg");
-    background-size:cover;
-    background-repeat:no-repeat;
+@media screen and (min-width : 320px){
+    body{
+        background: url("image/background.jpg");
+        -webkit-background-size:cover;
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    .game {
+        height: 100vh;
+        width: 100vw;
+
+    }
+
+    #logo{
+        height: 10%;
+        background: url('image/logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative;
+        top: 5%;
+        left: 6%;
+    }
+    .win{
+        text-align:center;
+    }
+    .winGif{
+        left: 2vw;
+        position: relative;
+    }
+    .board{
+        right: 1%;
+        width: 100%;
+        bottom: 5%;
+        position: relative;
+    }
+
 }
-#logo{
-    height:16vh;
-    background: url('image/logo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    top:5vh;
-}
-.win{
-    text-align:center;
-}
-.winGif{
-    left: 2vw;
-    position: relative;
+@media screen and (min-width : 568px){
+    body{
+        background: url("image/background.jpg");
+        -webkit-background-size:cover;
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    .game {
+        height: 100vh;
+        width: 100vw;
+
+    }
+
+    #logo{
+        height: 10%;
+        background: url('image/logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative;
+        top: 5%;
+        left: 6%;
+    }
+    .win{
+        text-align:center;
+    }
+    .winGif{
+        left: 2vw;
+        position: relative;
+    }
+    .board{
+        right: 1%;
+        width: 100%;
+        top: 5%;
+        position: relative;
+    }
+
 }
 
 /********************************
 Stat Board
 *********************************/
-#statsDiv{
-    height:56vh;
-    /*border:1px solid black;*/
-    top:9vh;
+@media screen and (min-width : 320px){
+    #statsDiv{
+        height: 100%;
+        width: 100%;
+        /* border: 1px solid black; */
+        display: inline-block;
+        position: relative;
+        margin: 1% 10%;
+        left:12%;
+    }
+    .stats{
+        text-align: center;
+        /* width: 100%; */
+        display: inline-block;
+        height: 20%;
+        color: lightgrey;
+        margin-right: 7%;
+    }
+    .btn{
+        position: relative;
+        /* left: 20%; */
+        margin-right: 9%;
+    }
 }
-.stats{
-    text-align: center;
-    width: 100%;
-    height: 20%;
-    color:lightgrey;
+@media screen and (min-width : 568px){
+    #statsDiv{
+        height: 100%;
+        width: 100%;
+        /* border: 1px solid black; */
+        display: inline-block;
+        position: relative;
+        margin: 1% 10%;
+    }
+    .stats{
+        text-align: center;
+        /* width: 100%; */
+        display: inline-block;
+        height: 20%;
+        color: lightgrey;
+        margin-right: 7%;
+    }
+    .btn{
+        position: relative;
+        /* left: 20%; */
+        margin-right: 9%;
+    }
 }
+
 /********************************
 Game Board
 *********************************/
-#gameDiv{
-    height:83vh;
-    /*border:1px solid black;*/
-}
-.container {
-    display: inline-block;
-    margin-right: 1vw;
-    width: 9vw;
-    height: 27vh;
-    position: relative;
-    /*border: 1px solid #ccc;*/
-    -webkit-perspective: 800px;
-    -moz-perspective: 800px;
-    -o-perspective: 800px;
-    perspective: 800px;
-}
-.card {
-    width: 100%;
-    height: 100%;
-    left:-1%;
-    position: absolute;
-    -webkit-transition: -webkit-transform 1s;
-    -moz-transition: -moz-transform 1s;
-    -o-transition: -o-transform 1s;
-    transition: transform 1s;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform-origin: 50% 50%;
-}
-.cardImg {
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-.card .back{
-    /*background-color: powderblue;*/
-}
+@media screen and (min-width : 320px) {
+    #gameDiv {
+        height: 100%;
+        /* border: 1px solid black; */
+        display: inline-block;
+        position: relative;
+        left: 13%;
 
-.card .front {
-    -webkit-transform: rotateY( 180deg );
-    -moz-transform: rotateY( 180deg );
-    -o-transform: rotateY( 180deg );
-    transform: rotateY( 180deg );
-}
-.card.flipped {
-    -webkit-transform: rotateY( 180deg );
-    -moz-transform: rotateY( 180deg );
-    -o-transform: rotateY( 180deg );
-    transform: rotateY( 180deg );
-}
-.card.flipBack {
-    -webkit-transform: rotateY( 180deg );
-    -moz-transform: rotateY( 180deg );
-    -o-transform: rotateY( 180deg );
-    transform: rotateY( 180deg );
-}
-.wind{
-    -webkit-animation: anim .5s infinite linear;
-    animation: anim .5s infinite linear;
-}
-@-webkit-keyframes anim {
-    from {-webkit-transform: rotateY(0deg);}
-    to {-webkit-transform: rotateY(360deg);}
-}
+    }
 
-@keyframes anim {
-    from {transform: rotateY(0deg);}
-    to {transform: rotateY(360deg);}
+    .containers {
+        display: inline-block;
+        margin-right: 1vw;
+        width: 12vw;
+        height: 18vh;
+        position: relative;
+        /* border: 1px solid #ccc; */
+        -webkit-perspective: 800px;
+        -moz-perspective: 800px;
+        -o-perspective: 800px;
+        perspective: 800px;
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        left: -1%;
+        position: absolute;
+        -webkit-transition: -webkit-transform 1s;
+        -moz-transition: -moz-transform 1s;
+        -o-transition: -o-transform 1s;
+        transition: transform 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+    }
+
+    .cardImg {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .card .back {
+        /*background-color: powderblue;*/
+    }
+
+    .card .front {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .card.flipped {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .card.flipBack {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .wind {
+        -webkit-animation: anim .5s infinite linear;
+        animation: anim .5s infinite linear;
+    }
+
+    @-webkit-keyframes anim {
+        from {
+            -webkit-transform: rotateY(0deg);
+        }
+        to {
+            -webkit-transform: rotateY(360deg);
+        }
+    }
+
+    @keyframes anim {
+        from {
+            transform: rotateY(0deg);
+        }
+        to {
+            transform: rotateY(360deg);
+        }
+    }
+    .noMatch {
+    }
 }
-.noMatch{}
+@media screen and (min-width : 568px) {
+    #gameDiv {
+        height: 100%;
+        /* border: 1px solid black; */
+        display: inline-block;
+        position: relative;
+        left: 13%;
+
+    }
+
+    .containers {
+        display: inline-block;
+        margin-right: 1vw;
+        width: 12vw;
+        height: 18vh;
+        position: relative;
+        /* border: 1px solid #ccc; */
+        -webkit-perspective: 800px;
+        -moz-perspective: 800px;
+        -o-perspective: 800px;
+        perspective: 800px;
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        left: -1%;
+        position: absolute;
+        -webkit-transition: -webkit-transform 1s;
+        -moz-transition: -moz-transform 1s;
+        -o-transition: -o-transform 1s;
+        transition: transform 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+    }
+
+    .cardImg {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .card .back {
+        /*background-color: powderblue;*/
+    }
+
+    .card .front {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .card.flipped {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .card.flipBack {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .wind {
+        -webkit-animation: anim .5s infinite linear;
+        animation: anim .5s infinite linear;
+    }
+
+    @-webkit-keyframes anim {
+        from {
+            -webkit-transform: rotateY(0deg);
+        }
+        to {
+            -webkit-transform: rotateY(360deg);
+        }
+    }
+
+    @keyframes anim {
+        from {
+            transform: rotateY(0deg);
+        }
+        to {
+            transform: rotateY(360deg);
+        }
+    }
+    .noMatch {
+    }
+}

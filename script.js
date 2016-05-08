@@ -199,7 +199,7 @@ var gameController = function (gameElement,statElement,modalElement){
             var divCon = $('<div>');
             var divCard = $('<div>');
             cgSelf.cardElement = divCard.addClass('card');
-            cgSelf.cardContainer = divCon.addClass('container');
+            cgSelf.cardContainer = divCon.addClass('containers');
             cgSelf.cardContainer.append(cgSelf.cardElement);
             cgSelf.cardElement.on('click', function(){
                 cgSelf.enableClick();
