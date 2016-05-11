@@ -136,10 +136,14 @@ var gameController = function (gameElement,statElement,modalElement){
     this.calculateAccuracy = function (){
         accuracy = Math.round(matches/attempts * 100);
         console.log(accuracy);
-        var acc = accuracy + "%";
-        if (attempts > 0){
-            return acc;
+        var acc;
+        if (attempts == 0){
+            acc = "0%";
         }
+        else if (attempts > 0){
+             acc = accuracy + "%";
+        }
+        return acc;
     };
 
     this.displayStats =function (){
@@ -151,7 +155,7 @@ var gameController = function (gameElement,statElement,modalElement){
     this.resetStats = function (){
         matches = 0;
         attempts = 0;
-        accuracy = null;
+        accuracy = '0%';
         self.displayStats();
     };
 
